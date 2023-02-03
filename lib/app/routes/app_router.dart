@@ -1,5 +1,5 @@
 import 'package:feeportal/view/authentication/login/login_screen.dart';
-import 'package:feeportal/view/navbar/navigation_screen.dart';
+import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/splash_screen/no_internet_screen.dart';
 import 'package:feeportal/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';

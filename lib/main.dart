@@ -1,3 +1,4 @@
+import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,20 @@ class FeePortal extends StatelessWidget {
             title: 'Fee Portal',
             theme: ThemeData(
               primarySwatch: Colors.blue,
+              appBarTheme: AppBarTheme(
+                elevation: 1,
+                backgroundColor: kSplashScreenColor,
+                titleTextStyle: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                ),
+                titleSpacing: 30,
+                actionsIconTheme: IconThemeData(
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
             ),
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRouter.generateRoute,

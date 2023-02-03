@@ -12,39 +12,41 @@ class NoInternetScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // const Image(
-            //   image: AssetImage('images/plypickerlogo.png'),
-            //   height: 100,
-            //   width: 100,
-            // ),
+            const Image(
+              image: AssetImage('assets/icons/logo.png'),
+              height: 100,
+              width: 100,
+            ),
             const SizedBox(
               height: 36,
             ),
             const Text(
-              'PLYPICKER',
+              'PayOn',
               style: TextStyle(
                 fontSize: 40,
                 fontFamily: 'Rubik',
                 fontWeight: FontWeight.w600,
-                color: kTextColor,
+                color: kSplashScreenColor,
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 50,
             ),
             const Text(
               'You are not connected to the internet',
               style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400),
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             const Text(
               'please try again.',
               style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400),
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             const SizedBox(
               height: 60,
@@ -57,7 +59,7 @@ class NoInternetScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(AppRouter.splashRoute);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: kLoginContainerColor,
+                  backgroundColor: kSplashScreenColor,
                 ),
                 child: const Text(
                   'RETRY',

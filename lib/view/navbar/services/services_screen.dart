@@ -10,6 +10,20 @@ class ServicesScreen extends StatefulWidget {
 class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Services',
+        ),
+        centerTitle: false,
+        actions: const [
+          Icon(Icons.menu),
+          SizedBox(
+            width: 30,
+          ),
+        ],
+      ),
+    );
   }
 }
