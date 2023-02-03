@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "12c19c6e538ddb601774490ef8eb5d026306a5d61fed478e309b5296e44e65c5"
+build_start_time: [1675426994, 530936956]
+build_end_time: [1675426995, 714795112]
+inputs:
+  "/Users/harshitmangal/StudioProjects/feeportal/macos/Flutter/GeneratedPluginRegistrant.swift": [1675426990, 239475727]
+  "/Users/harshitmangal/StudioProjects/feeportal/macos/Runner/AppDelegate.swift": [1675426273, 284438133]
+  "/Users/harshitmangal/StudioProjects/feeportal/macos/Runner/MainFlutterWindow.swift": [1675426273, 287916660]
