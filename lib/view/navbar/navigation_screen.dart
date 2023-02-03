@@ -1,4 +1,12 @@
+import 'package:feeportal/app/constants/color_constants.dart';
+import 'package:feeportal/core/providers/auth_provider.dart';
+import 'package:feeportal/view/authentication/login/login_screen.dart';
+import 'package:feeportal/view/navbar/account/account_screen.dart';
+import 'package:feeportal/view/navbar/home/home_screen.dart';
+import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
+import 'package:feeportal/view/navbar/services/services_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -8,6 +16,7 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
+  bool isLoggedIn = false;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -15,22 +24,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
     });
   }
 
-  // Future<bool> initCache({required BuildContext context}) async {
-  //   var auth = Provider.of<AuthProvider>(context, listen: false);
-  //   if (await auth.tryAutoLogin()) {
-  //     setState(() {
-  //       isLoggedIn = true;
-  //     });
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  Future<bool> initCache({required BuildContext context}) async {
+    var auth = Provider.of<AuthProvider>(context, listen: false);
+    if (await auth.tryAutoLogin()) {
+      setState(() {
+        isLoggedIn = true;
+      });
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    //initCache(context: context);
+    initCache(context: context);
   }
 
   @override
@@ -42,18 +51,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final user = Provider.of<AuthProvider>(context);
-    // final screens = [
-    //   HomePage(
-    //     token: user.token,
-    //   ),
-    //   const WishListScreen(),
-    //   NotificationSceen(
-    //     token: user.token,
-    //   ),
-    //   const CartMainScreen(),
-    //   isLoggedIn ? const AccountScreen() : const LoginScreen(),
-    // ];
+    final screens = [
+      HomeScreen(),
+      ServicesScreen(),
+      PricingScreen(),
+      isLoggedIn ? const AccountScreen() : const LoginScreen(),
+    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -63,11 +66,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.favorite_border_outlined),
+            icon: const Icon(Icons.miscellaneous_services),
             label: 'Services',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
+            icon: Icon(Icons.price_change),
             label: 'Pricing',
           ),
           const BottomNavigationBarItem(
@@ -75,14 +78,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
             label: 'Account',
           ),
         ],
+        backgroundColor: kSplashScreenColor.withOpacity(0.8),
         unselectedItemColor: Colors.grey,
         unselectedLabelStyle: const TextStyle(color: Colors.grey),
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
-      //body: screens.elementAt(_selectedIndex),
-      body: Text(_selectedIndex.toString()),
+      body: screens.elementAt(_selectedIndex),
     );
   }
 }
