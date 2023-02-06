@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class AboutUsMainScreen extends StatefulWidget {
@@ -10,6 +12,18 @@ class AboutUsMainScreen extends StatefulWidget {
 class _AboutUsMainScreenState extends State<AboutUsMainScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('About Us'),
+        foregroundColor: Colors.white,
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back_outlined,
+          ),
+        ),
+        centerTitle: false,
+      ),
+    );
   }
 }

@@ -16,6 +16,7 @@ class _HomeWideLayoutState extends State<HomeWideLayout> {
   bool isAllTransactionsHovered = false;
   bool isFAQsHovered = false;
   bool isTermsHovered = false;
+  bool isPrivacyPolicyHovered = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +185,41 @@ class _HomeWideLayoutState extends State<HomeWideLayout> {
                       fontFamily: 'Poppins',
                       fontSize: 12,
                       color: isTermsHovered
+                          ? kButtonHoverColor
+                          : kButtonColor.withOpacity(0.7),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          //privacy Policy
+          MouseRegion(
+            onHover: (_) {
+              setState(() {
+                isPrivacyPolicyHovered = true;
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                isPrivacyPolicyHovered = false;
+              });
+            },
+            child: Center(
+              child: GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                    context, AppRouter.privacyPolicyMainRoute),
+                child: Center(
+                  child: Text(
+                    'Privacy Policy',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      color: isPrivacyPolicyHovered
                           ? kButtonHoverColor
                           : kButtonColor.withOpacity(0.7),
                     ),

@@ -2,20 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class AllTransactionsMainScreen extends StatefulWidget {
-  const AllTransactionsMainScreen({Key? key}) : super(key: key);
+class PrivacyPolicyMainScreen extends StatefulWidget {
+  const PrivacyPolicyMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<AllTransactionsMainScreen> createState() =>
-      _AllTransactionsMainScreenState();
+  State<PrivacyPolicyMainScreen> createState() =>
+      _PrivacyPolicyMainScreenState();
 }
 
-class _AllTransactionsMainScreenState extends State<AllTransactionsMainScreen> {
+class _PrivacyPolicyMainScreenState extends State<PrivacyPolicyMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Transactions'),
+        title: Text('Privacy Policy'),
         foregroundColor: Colors.white,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),

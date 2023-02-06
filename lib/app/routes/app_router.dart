@@ -3,6 +3,7 @@ import 'package:feeportal/view/navbar/drawer/about_us.dart';
 import 'package:feeportal/view/navbar/drawer/all_transaction_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/contact_us.dart';
 import 'package:feeportal/view/navbar/drawer/faqs.dart';
+import 'package:feeportal/view/navbar/drawer/privacy_policy.dart';
 import 'package:feeportal/view/navbar/drawer/terms.dart';
 import 'package:feeportal/view/navbar/help_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
@@ -21,6 +22,7 @@ class AppRouter {
   static const termsMainRoute = '/TermsAndConditionsMainScreen';
   static const aboutUsMainRoute = '/AboutUsMainScreen';
   static const helpMainRoute = '/HelpMainScreen';
+  static const privacyPolicyMainRoute = '/PrivacyPolicyMainScreen';
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -84,6 +86,13 @@ class AppRouter {
         {
           return MaterialPageRoute(
             builder: (_) => const HelpMainScreen(),
+            settings: settings,
+          );
+        }
+      case privacyPolicyMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const PrivacyPolicyMainScreen(),
             settings: settings,
           );
         }

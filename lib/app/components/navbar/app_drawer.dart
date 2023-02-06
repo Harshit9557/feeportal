@@ -16,6 +16,7 @@ class _AppDrawerState extends State<AppDrawer> {
   bool isAllTransactionsHovered = false;
   bool isFAQsHovered = false;
   bool isTermsHovered = false;
+  bool isPrivacyPolicyHovered = false;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -27,9 +28,9 @@ class _AppDrawerState extends State<AppDrawer> {
         decoration: const BoxDecoration(
           color: kSplashScreenColor,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.elliptical(500, 800),
-            bottomLeft: Radius.elliptical(800, 900),
-            bottomRight: Radius.elliptical(200, 100),
+            topLeft: Radius.elliptical(400, 800),
+            bottomLeft: Radius.elliptical(1000, 1300),
+            bottomRight: Radius.elliptical(380, 150),
           ),
         ),
         child: Column(
@@ -190,6 +191,37 @@ class _AppDrawerState extends State<AppDrawer> {
                     fontFamily: 'Poppins',
                     fontSize: 15,
                     color: isTermsHovered ? kButtonHoverColor : Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            //privacy policy
+            MouseRegion(
+              onHover: (_) {
+                setState(() {
+                  isPrivacyPolicyHovered = true;
+                });
+              },
+              onExit: (_) {
+                setState(() {
+                  isPrivacyPolicyHovered = false;
+                });
+              },
+              child: GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                    context, AppRouter.privacyPolicyMainRoute),
+                child: Text(
+                  'Privacy Policy',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    fontSize: 15,
+                    color: isPrivacyPolicyHovered
+                        ? kButtonHoverColor
+                        : Colors.white,
                   ),
                 ),
               ),
