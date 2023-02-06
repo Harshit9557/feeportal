@@ -1,20 +1,41 @@
+import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginMainScreen extends StatefulWidget {
+  const LoginMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginMainScreen> createState() => _LoginMainScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginMainScreenState extends State<LoginMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Login',
+        leading: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Image.asset(
+              'assets/icons/logo.png',
+              height: 25,
+              width: 25,
+            ),
+          ),
+        ),
+        titleSpacing: 0,
+        title: const Text.rich(
+          TextSpan(
+            text: 'Pay',
+            children: [
+              TextSpan(
+                text: 'On',
+                style: TextStyle(
+                  color: kButtonHoverColor,
+                ),
+              )
+            ],
+          ),
         ),
         centerTitle: false,
         actions: const [

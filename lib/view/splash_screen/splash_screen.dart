@@ -48,10 +48,10 @@ class _SplashScreenState extends State<SplashScreen>
 
     if (!hasInternet) {
       Navigator.of(context).pushReplacementNamed(
-        AppRouter.navigationRoute,
+        AppRouter.navigationMainRoute,
       );
     } else {
-      Navigator.of(context).pushReplacementNamed(AppRouter.noInternetRoute);
+      Navigator.of(context).pushReplacementNamed(AppRouter.noInternetMainRoute);
     }
   }
 
@@ -71,13 +71,26 @@ class _SplashScreenState extends State<SplashScreen>
             const SizedBox(
               height: 36,
             ),
-            Text(
-              'PayOn',
-              style: TextStyle(
-                fontSize: animation.value * 40,
-                fontFamily: 'Rubik',
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+            Text.rich(
+              TextSpan(
+                text: 'Pay',
+                style: TextStyle(
+                  fontSize: animation.value * 40,
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+                children: [
+                  TextSpan(
+                    text: 'On',
+                    style: TextStyle(
+                      color: kButtonHoverColor,
+                      fontSize: animation.value * 40,
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
               ),
             ),
           ],

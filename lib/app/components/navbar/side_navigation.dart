@@ -158,7 +158,7 @@ class _SideNavigationState extends State<SideNavigation> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: actions.length,
+              itemCount: actions == null ? 0 : actions.length,
               shrinkWrap: true,
               primary: false,
               itemBuilder: (context, index) {

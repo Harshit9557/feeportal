@@ -1,7 +1,7 @@
 import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:feeportal/view/authentication/login/login_screen.dart';
 import 'package:feeportal/view/navbar/account/account_screen.dart';
-import 'package:feeportal/view/navbar/home/home_screen.dart';
+import 'package:feeportal/view/navbar/home/home_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/normal_layout.dart';
 import 'package:feeportal/view/navbar/navigation_screen/wide_layout.dart';
 import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
@@ -11,20 +11,20 @@ import 'package:provider/provider.dart';
 
 bool isLoggedIn = false;
 final screens = [
-  const HomeScreen(),
+  const HomeMainScreen(),
   const ServicesScreen(),
-  const PricingScreen(),
-  isLoggedIn ? const AccountScreen() : const LoginScreen(),
+  const PricingMainScreen(),
+  isLoggedIn ? const AccountScreen() : const LoginMainScreen(),
 ];
 
-class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({Key? key}) : super(key: key);
+class NavigationMainScreen extends StatefulWidget {
+  const NavigationMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<NavigationScreen> createState() => _NavigationScreenState();
+  State<NavigationMainScreen> createState() => _NavigationMainScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _NavigationMainScreenState extends State<NavigationMainScreen> {
   Future<bool> initCache({required BuildContext context}) async {
     var auth = Provider.of<AuthProvider>(context, listen: false);
     if (await auth.tryAutoLogin()) {
@@ -52,12 +52,17 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth > 600) {
-        return const WideLayout();
-      } else {
-        return const NormalLayout();
-      }
-    });
+    return SafeArea(
+      top: false,
+      child: ClipRect(
+        child: LayoutBuilder(builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return const WideLayout();
+          } else {
+            return const NormalLayout();
+          }
+        }),
+      ),
+    );
   }
 }

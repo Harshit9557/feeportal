@@ -11,14 +11,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
 
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.0.17
   intl_phone_field: ^3.1.0
-  flutter_screenutil: ^5.6.1
   flutter_easyloading: ^3.0.5
+  responsive_framework:
+  sizer: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +41,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/images/
 
   fonts:
     - family: Rubik

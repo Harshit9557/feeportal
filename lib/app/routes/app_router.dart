@@ -1,21 +1,33 @@
 import 'package:feeportal/view/authentication/login/login_screen.dart';
+import 'package:feeportal/view/navbar/drawer/about_us.dart';
+import 'package:feeportal/view/navbar/drawer/all_transaction_main_screen.dart';
+import 'package:feeportal/view/navbar/drawer/contact_us.dart';
+import 'package:feeportal/view/navbar/drawer/faqs.dart';
+import 'package:feeportal/view/navbar/drawer/terms.dart';
+import 'package:feeportal/view/navbar/help_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
-import 'package:feeportal/view/splash_screen/no_internet_screen.dart';
+import 'package:feeportal/view/splash_screen/no_internet_screen/no_internet_main_screen.dart';
 import 'package:feeportal/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
-  static const noInternetRoute = '/NoInternetScreen';
+  static const noInternetMainRoute = '/NoInternetMainScreen';
   static const splashRoute = '/SplashScreen';
-  static const navigationRoute = '/NavigationScreen';
-  static const loginRoute = '/LoginScreen';
+  static const navigationMainRoute = '/NavigationMainScreen';
+  static const loginMainRoute = '/LoginMainScreen';
+  static const allTransactionsMainRoute = '/AllTransactionsMainScreen';
+  static const faqsMainRoute = '/FAQsMainScreen';
+  static const contactUsMainRoute = '/ContactUsMainScreen';
+  static const termsMainRoute = '/TermsAndConditionsMainScreen';
+  static const aboutUsMainRoute = '/AboutUsMainScreen';
+  static const helpMainRoute = '/HelpMainScreen';
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case noInternetRoute:
+      case noInternetMainRoute:
         {
           return MaterialPageRoute(
-            builder: (_) => const NoInternetScreen(),
+            builder: (_) => const NoInternetMainScreen(),
             settings: settings,
           );
         }
@@ -26,17 +38,59 @@ class AppRouter {
             settings: settings,
           );
         }
-      case loginRoute:
+      case loginMainRoute:
         {
           return MaterialPageRoute(
-            builder: (_) => const LoginScreen(),
+            builder: (_) => const LoginMainScreen(),
+            settings: settings,
+          );
+        }
+      case allTransactionsMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const AllTransactionsMainScreen(),
+            settings: settings,
+          );
+        }
+      case aboutUsMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const AboutUsMainScreen(),
+            settings: settings,
+          );
+        }
+      case faqsMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const FAQsMainScreen(),
+            settings: settings,
+          );
+        }
+      case contactUsMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const ContactUsMainScreen(),
+            settings: settings,
+          );
+        }
+      case termsMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const TermsAndConditionsMainScreen(),
+            settings: settings,
+          );
+        }
+      case helpMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const HelpMainScreen(),
             settings: settings,
           );
         }
       default:
         {
           return MaterialPageRoute(
-            builder: (_) => const NavigationScreen(),
+            builder: (_) => const NavigationMainScreen(),
             settings: settings,
           );
         }
