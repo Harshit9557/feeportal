@@ -22,15 +22,15 @@ class _AppDrawerState extends State<AppDrawer> {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        padding: EdgeInsets.only(right: 20),
+        padding: const EdgeInsets.only(right: 20),
         height: 500,
         width: 300,
         decoration: const BoxDecoration(
           color: kSplashScreenColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.elliptical(400, 800),
-            bottomLeft: Radius.elliptical(1000, 1300),
-            bottomRight: Radius.elliptical(380, 150),
+            bottomLeft: Radius.elliptical(1000, 1500),
+            bottomRight: Radius.elliptical(400, 250),
           ),
         ),
         child: Column(
