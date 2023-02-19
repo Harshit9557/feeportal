@@ -1,6 +1,11 @@
 import 'package:feeportal/app/components/navbar/side_navigation.dart';
+import 'package:feeportal/view/authentication/login/login_main_screen.dart';
+import 'package:feeportal/view/navbar/account/account_screen.dart';
+import 'package:feeportal/view/navbar/home/home_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/normal_layout.dart';
+import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
+import 'package:feeportal/view/navbar/services/services_screen.dart';
 import 'package:flutter/material.dart';
 
 class WideLayout extends StatefulWidget {
@@ -13,6 +18,13 @@ class WideLayout extends StatefulWidget {
 class _WideLayoutState extends State<WideLayout> {
   final pageController =
       PageController(initialPage: selectedIndex, keepPage: true);
+
+  final screens = [
+    const HomeMainScreen(),
+    const ServicesScreen(),
+    const PricingMainScreen(),
+    isLoggedIn ? const AccountScreen() : const LoginMainScreen(),
+  ];
 
   final navItems = [
     SideNavigationItem(icon: Icons.home, title: "Home"),

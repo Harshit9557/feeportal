@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
   String _token = '';
-  bool get loggedIn => _token != null;
+  bool _loggedIn = false;
+  bool get loggedIn => _loggedIn;
   savePrefs() async {
     final prefs = await SharedPreferences.getInstance();
     var userData;
@@ -20,6 +21,11 @@ class AuthProvider extends ChangeNotifier {
     //   'gender': _user!.gender,
     // });
     prefs.setString('userInfo', userData);
+  }
+
+  void loginStatus() {
+    _loggedIn = true;
+    notifyListeners();
   }
 
   Future<bool> tryAutoLogin() async {

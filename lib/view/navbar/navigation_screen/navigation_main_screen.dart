@@ -1,21 +1,10 @@
 import 'package:feeportal/core/providers/auth_provider.dart';
-import 'package:feeportal/view/authentication/login/login_screen.dart';
-import 'package:feeportal/view/navbar/account/account_screen.dart';
-import 'package:feeportal/view/navbar/home/home_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/normal_layout.dart';
 import 'package:feeportal/view/navbar/navigation_screen/wide_layout.dart';
-import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
-import 'package:feeportal/view/navbar/services/services_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 bool isLoggedIn = false;
-final screens = [
-  const HomeMainScreen(),
-  const ServicesScreen(),
-  const PricingMainScreen(),
-  isLoggedIn ? const AccountScreen() : const LoginMainScreen(),
-];
 
 class NavigationMainScreen extends StatefulWidget {
   const NavigationMainScreen({Key? key}) : super(key: key);
@@ -55,13 +44,15 @@ class _NavigationMainScreenState extends State<NavigationMainScreen> {
     return SafeArea(
       top: false,
       child: ClipRect(
-        child: LayoutBuilder(builder: (context, constraints) {
-          if (constraints.maxWidth > 600) {
-            return const WideLayout();
-          } else {
-            return const NormalLayout();
-          }
-        }),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 600) {
+              return const WideLayout();
+            } else {
+              return const NormalLayout();
+            }
+          },
+        ),
       ),
     );
   }
