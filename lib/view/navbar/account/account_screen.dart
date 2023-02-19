@@ -27,6 +27,9 @@ class _AccountScreenState extends State<AccountScreen> {
         title: const Text.rich(
           TextSpan(
             text: 'Pay',
+            style: TextStyle(
+              color: Colors.white,
+            ),
             children: [
               TextSpan(
                 text: 'On',

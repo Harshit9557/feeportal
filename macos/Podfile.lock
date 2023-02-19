@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_size/macos
 
 SPEC CHECKSUMS:
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  FlutterMacOS: 85f90bfb3f1703249cf1539e4dfbff31e8584698
   shared_preferences_foundation: 297b3ebca31b34ec92be11acd7fb0ba932c822ca
   window_size: 339dafa0b27a95a62a843042038fa6c3c48de195
 

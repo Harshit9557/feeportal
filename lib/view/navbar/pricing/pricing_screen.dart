@@ -2,7 +2,6 @@ import 'package:feeportal/app/components/navbar/app_drawer.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class PricingMainScreen extends StatefulWidget {
   const PricingMainScreen({Key? key}) : super(key: key);
@@ -49,6 +48,9 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
         title: const Text.rich(
           TextSpan(
             text: 'Pay',
+            style: TextStyle(
+              color: Colors.white,
+            ),
             children: [
               TextSpan(
                 text: 'On',
@@ -97,7 +99,7 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                     height: 10,
                   ),
                   SizedBox(
-                    width: 80.w,
+                    width: device.width - 100,
                     child: const Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                       style: TextStyle(
@@ -125,11 +127,11 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
               ),
             ),
             SizedBox(
-              width: 60.w,
+              width: 60,
               child: Text(
                 'Helps You Make Smart Financial Choices',
                 style: TextStyle(
-                  fontSize: 4.w,
+                  fontSize: 4,
                   fontFamily: 'Poppins',
                   color: kSplashScreenColor,
                 ),
@@ -886,7 +888,7 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 50),
                       child: Container(
                         height: 1,
-                        width: 80.w,
+                        width: 80,
                         color: kTextColor.withOpacity(0.2),
                       ),
                     ),
@@ -927,7 +929,7 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                           height: 20,
                         ),
                         SizedBox(
-                          width: 80.w,
+                          width: 80,
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipisc ing elitsed do eiusmod tempororem ipsum dolor sit am econsect ametconsectetetur.',
                             style: TextStyle(

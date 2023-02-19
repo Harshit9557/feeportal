@@ -39,6 +39,9 @@ class _HomeNormalLayoutState extends State<HomeNormalLayout> {
         title: const Text.rich(
           TextSpan(
             text: 'Pay',
+            style: TextStyle(
+              color: Colors.white,
+            ),
             children: [
               TextSpan(
                 text: 'On',

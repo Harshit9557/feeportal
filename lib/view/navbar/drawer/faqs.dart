@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:flutter/material.dart';
 
 class FAQsMainScreen extends StatefulWidget {
@@ -19,7 +18,9 @@ class _FAQsMainScreenState extends State<FAQsMainScreen> {
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: Icon(
-            Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back_outlined,
+            defaultTargetPlatform == TargetPlatform.iOS && !kIsWeb
+                ? Icons.arrow_back_ios
+                : Icons.arrow_back_outlined,
           ),
         ),
         centerTitle: false,

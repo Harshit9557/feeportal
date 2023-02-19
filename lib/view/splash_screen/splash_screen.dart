@@ -1,9 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,8 +17,6 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
-
-  bool hasInternet = true;
 
   @override
   void dispose() {
@@ -43,15 +42,32 @@ class _SplashScreenState extends State<SplashScreen>
 
   _navigateToBuilderScreen() async {
     await Future.delayed(const Duration(milliseconds: 3000), () {});
-
-    hasInternet = await InternetConnectionChecker().hasConnection;
-
-    if (!hasInternet) {
-      Navigator.of(context).pushReplacementNamed(
-        AppRouter.navigationMainRoute,
-      );
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if ((defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.windows ||
+            defaultTargetPlatform == TargetPlatform.linux ||
+            defaultTargetPlatform == TargetPlatform.macOS) &&
+        !kIsWeb) {
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+        Navigator.of(context).pushReplacementNamed(
+          AppRouter.navigationMainRoute,
+        );
+      } else {
+        Navigator.of(context)
+            .pushReplacementNamed(AppRouter.noInternetMainRoute);
+      }
     } else {
-      Navigator.of(context).pushReplacementNamed(AppRouter.noInternetMainRoute);
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+        Navigator.of(context).pushReplacementNamed(
+          AppRouter.navigationMainRoute,
+        );
+      } else {
+        Navigator.of(context)
+            .pushReplacementNamed(AppRouter.noInternetMainRoute);
+      }
     }
   }
 

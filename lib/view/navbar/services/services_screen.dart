@@ -2,7 +2,6 @@ import 'package:feeportal/app/components/navbar/app_drawer.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({Key? key}) : super(key: key);
@@ -61,6 +60,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
         title: const Text.rich(
           TextSpan(
             text: 'Pay',
+            style: TextStyle(
+              color: Colors.white,
+            ),
             children: [
               TextSpan(
                 text: 'On',
@@ -109,7 +111,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     height: 10,
                   ),
                   SizedBox(
-                    width: 80.w,
+                    width: device.width - 100,
                     child: const Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                       style: TextStyle(
@@ -145,13 +147,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         },
                         child: Container(
                           height: 280,
-                          width: 300,
+                          width: 250,
                           margin: const EdgeInsets.all(10),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 25),
                           decoration: BoxDecoration(
                             color: priceListStatus[index]
-                                ? kButtonColor
+                                ? kButtonHoverColor
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
@@ -199,7 +201,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 textAlign: TextAlign.center,
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 30,
                               ),
                               Container(
                                 height: 30,
@@ -207,7 +209,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: priceListStatus[index]
-                                      ? kLoginContainerColor
+                                      ? Color(0xFFFF4A4A)
                                       : kSplashScreenColor.withOpacity(0.2),
                                 ),
                                 child: Center(
@@ -698,7 +700,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 50),
                       child: Container(
                         height: 1,
-                        width: 80.w,
+                        width: 80,
                         color: kTextColor.withOpacity(0.2),
                       ),
                     ),
@@ -739,7 +741,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                           height: 20,
                         ),
                         SizedBox(
-                          width: 80.w,
+                          width: 80,
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipisc ing elitsed do eiusmod tempororem ipsum dolor sit am econsect ametconsectetetur.',
                             style: TextStyle(
