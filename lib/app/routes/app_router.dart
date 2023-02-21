@@ -1,4 +1,5 @@
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
+import 'package:feeportal/view/authentication/signup/signup_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/about_us.dart';
 import 'package:feeportal/view/navbar/drawer/all_transaction_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/contact_us.dart';
@@ -23,6 +24,7 @@ class AppRouter {
   static const aboutUsMainRoute = '/AboutUsMainScreen';
   static const helpMainRoute = '/HelpMainScreen';
   static const privacyPolicyMainRoute = '/PrivacyPolicyMainScreen';
+  static const signUPMainRoute = '/SignUpMainScreen';
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -44,6 +46,13 @@ class AppRouter {
         {
           return MaterialPageRoute(
             builder: (_) => const LoginMainScreen(),
+            settings: settings,
+          );
+        }
+      case signUPMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const SignUpMainScreen(),
             settings: settings,
           );
         }

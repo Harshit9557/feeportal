@@ -1,6 +1,7 @@
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginWideLayout extends StatefulWidget {
@@ -11,12 +12,14 @@ class LoginWideLayout extends StatefulWidget {
 }
 
 class _LoginWideLayoutState extends State<LoginWideLayout> {
-  final idController = TextEditingController();
+  final mailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isHidden = true;
   bool isLoginHovered = false;
-  bool isIDHovered = false;
+  bool isMailHovered = false;
   bool isPasswordHovered = false;
+  bool isRegisterHovered = false;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
@@ -36,208 +39,259 @@ class _LoginWideLayoutState extends State<LoginWideLayout> {
           ),
           SizedBox(
             width: device.width / 2.5,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Image(
-                    image: AssetImage('assets/icons/logo.png'),
-                    height: 100,
-                    width: 100,
-                  ),
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  const Text.rich(
-                    TextSpan(
-                      text: 'Pay',
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontFamily: 'Rubik',
-                        fontWeight: FontWeight.w600,
-                        color: kSplashScreenColor,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 30),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Image(
+                        image: AssetImage('assets/icons/logo.png'),
+                        height: 100,
+                        width: 100,
                       ),
-                      children: [
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      const Text.rich(
                         TextSpan(
-                          text: 'On',
+                          text: 'Pay',
                           style: TextStyle(
-                            color: kButtonHoverColor,
                             fontSize: 40,
                             fontFamily: 'Rubik',
                             fontWeight: FontWeight.w600,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  MouseRegion(
-                    onHover: (_) {
-                      setState(() {
-                        isIDHovered = true;
-                      });
-                    },
-                    onExit: (_) {
-                      setState(() {
-                        isIDHovered = false;
-                      });
-                    },
-                    child: TextFormField(
-                      cursorColor: kSplashScreenColor,
-                      keyboardType: TextInputType.number,
-                      controller: idController,
-                      validator: (String? value) {
-                        if (value!.isEmpty) {
-                          return 'Please Enter ID';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Enter your ID',
-                        hintStyle: TextStyle(
-                          color: kTextColor.withOpacity(0.5),
-                          fontSize: 13,
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          color: kSplashScreenColor,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isIDHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isIDHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isIDHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MouseRegion(
-                    onHover: (_) {
-                      setState(() {
-                        isPasswordHovered = true;
-                      });
-                    },
-                    onExit: (_) {
-                      setState(() {
-                        isPasswordHovered = false;
-                      });
-                    },
-                    child: TextFormField(
-                      cursorColor: kSplashScreenColor,
-                      keyboardType: TextInputType.text,
-                      controller: passwordController,
-                      obscureText: isHidden,
-                      validator: (String? value) {
-                        if (value!.isEmpty) {
-                          return 'Please Enter Password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        hintStyle: TextStyle(
-                          color: kTextColor.withOpacity(0.5),
-                          fontSize: 13,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.key,
-                          color: kSplashScreenColor,
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () => setState(() {
-                            isHidden = !isHidden;
-                          }),
-                          child: Icon(
-                            isHidden
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
                             color: kSplashScreenColor,
                           ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isPasswordHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isPasswordHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: isPasswordHovered
-                                  ? kButtonHoverColor
-                                  : kButtonColor),
-                          gapPadding: 10,
+                          children: [
+                            TextSpan(
+                              text: 'On',
+                              style: TextStyle(
+                                color: kButtonHoverColor,
+                                fontSize: 40,
+                                fontFamily: 'Rubik',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      MouseRegion(
+                        onHover: (_) {
+                          setState(() {
+                            isMailHovered = true;
+                          });
+                        },
+                        onExit: (_) {
+                          setState(() {
+                            isMailHovered = false;
+                          });
+                        },
+                        child: TextFormField(
+                          cursorColor: kSplashScreenColor,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: mailController,
+                          validator: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter Your Mail ID';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter Your Mail ID',
+                            hintStyle: TextStyle(
+                              color: kTextColor.withOpacity(0.5),
+                              fontSize: 13,
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.mail_outline_rounded,
+                              color: kSplashScreenColor,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 10,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isMailHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isMailHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isMailHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      MouseRegion(
+                        onHover: (_) {
+                          setState(() {
+                            isPasswordHovered = true;
+                          });
+                        },
+                        onExit: (_) {
+                          setState(() {
+                            isPasswordHovered = false;
+                          });
+                        },
+                        child: TextFormField(
+                          cursorColor: kSplashScreenColor,
+                          keyboardType: TextInputType.text,
+                          controller: passwordController,
+                          obscureText: isHidden,
+                          validator: (String? value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter Your Password';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter Your password',
+                            hintStyle: TextStyle(
+                              color: kTextColor.withOpacity(0.5),
+                              fontSize: 13,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 10,
+                            ),
+                            prefixIcon: Icon(
+                              isHidden
+                                  ? Icons.lock_outline_rounded
+                                  : Icons.lock_open_rounded,
+                              color: kSplashScreenColor,
+                            ),
+                            suffixIcon: GestureDetector(
+                              onTap: () => setState(() {
+                                isHidden = !isHidden;
+                              }),
+                              child: Icon(
+                                isHidden
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
+                                color: kSplashScreenColor,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isPasswordHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isPasswordHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: isPasswordHovered
+                                      ? kButtonHoverColor
+                                      : kButtonColor),
+                              gapPadding: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: 120,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              setState(() {
+                                isLoggedIn = true;
+                              });
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                AppRouter.navigationMainRoute,
+                                ModalRoute.withName(
+                                    AppRouter.navigationMainRoute),
+                                arguments: 3,
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kSplashScreenColor,
+                          ),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          text: 'Didn\'t have an account? ',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w500,
+                            color: kSplashScreenColor.withOpacity(0.7),
+                          ),
+                          children: [
+                            TextSpan(
+                              text: 'Register',
+                              style: TextStyle(
+                                color: isRegisterHovered
+                                    ? kButtonHoverColor
+                                    : kButtonColor,
+                                fontSize: 14,
+                                fontFamily: 'Rubik',
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => Navigator.of(context)
+                                    .pushNamed(AppRouter.signUPMainRoute),
+                              onEnter: (_) {
+                                setState(() {
+                                  isRegisterHovered = true;
+                                });
+                              },
+                              onExit: (_) {
+                                setState(() {
+                                  isRegisterHovered = false;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  SizedBox(
-                    height: 60,
-                    width: 120,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          isLoggedIn = true;
-                        });
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          AppRouter.navigationMainRoute,
-                          ModalRoute.withName(AppRouter.navigationMainRoute),
-                          arguments: 3,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kSplashScreenColor,
-                      ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
           ),
