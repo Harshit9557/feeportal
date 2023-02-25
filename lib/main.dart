@@ -27,7 +27,7 @@ class FeePortal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.white),
+      const SystemUiOverlayStyle(statusBarColor: kSplashScreenColor),
     );
     return MultiProvider(
       providers: [

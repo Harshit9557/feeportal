@@ -13,7 +13,6 @@ class HomeNormalLayout extends StatefulWidget {
 class _HomeNormalLayoutState extends State<HomeNormalLayout> {
   @override
   Widget build(BuildContext context) {
-    var device = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kButtonColor,

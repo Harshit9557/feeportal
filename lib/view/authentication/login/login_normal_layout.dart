@@ -280,6 +280,9 @@ class _LoginNormalLayoutState extends State<LoginNormalLayout> {
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),

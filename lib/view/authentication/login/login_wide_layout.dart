@@ -289,6 +289,9 @@ class _LoginWideLayoutState extends State<LoginWideLayout> {
                           ],
                         ),
                       ),
+                      const SizedBox(
+                        height: 40,
+                      ),
                     ],
                   ),
                 ),

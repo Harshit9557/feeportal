@@ -41,18 +41,15 @@ class _NavigationMainScreenState extends State<NavigationMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: ClipRect(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if (constraints.maxWidth > 600) {
-              return const WideLayout();
-            } else {
-              return const NormalLayout();
-            }
-          },
-        ),
+    return ClipRect(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 600) {
+            return const WideLayout();
+          } else {
+            return const NormalLayout();
+          }
+        },
       ),
     );
   }
