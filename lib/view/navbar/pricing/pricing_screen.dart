@@ -392,18 +392,15 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                 textScaleFactor: 1.5,
               ),
             ),
-            SizedBox(
-              width: 60,
-              child: Text(
-                'Helps You Make Smart Financial Choices',
-                style: TextStyle(
-                  fontSize: 4,
-                  fontFamily: 'Poppins',
-                  color: kSplashScreenColor,
-                ),
-                textScaleFactor: 1.2,
-                textAlign: TextAlign.center,
+            const Text(
+              'Helps You Make Smart Financial Choices',
+              style: TextStyle(
+                fontSize: 12,
+                fontFamily: 'Poppins',
+                color: kSplashScreenColor,
               ),
+              textScaleFactor: 1.2,
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 50,
@@ -1194,8 +1191,8 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        SizedBox(
-                          width: 80,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipisc ing elitsed do eiusmod tempororem ipsum dolor sit am econsect ametconsectetetur.',
                             style: TextStyle(

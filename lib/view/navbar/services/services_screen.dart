@@ -1005,8 +1005,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        SizedBox(
-                          width: 80,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipisc ing elitsed do eiusmod tempororem ipsum dolor sit am econsect ametconsectetetur.',
                             style: TextStyle(

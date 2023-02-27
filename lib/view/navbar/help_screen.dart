@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HelpMainScreen extends StatefulWidget {
@@ -15,12 +14,22 @@ class _HelpMainScreenState extends State<HelpMainScreen> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back_outlined,
-          ),
-        ),
+        automaticallyImplyLeading: false,
+        leading: (defaultTargetPlatform == TargetPlatform.iOS ||
+                defaultTargetPlatform == TargetPlatform.android)
+            ? Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+              )
+            : null,
+        titleSpacing: 0,
         title: const Text(
           'Quick Support',
         ),

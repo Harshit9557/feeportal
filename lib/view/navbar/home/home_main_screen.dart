@@ -14,7 +14,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > 700) {
+        if (constraints.maxWidth > 540) {
           return const HomeWideLayout();
         } else {
           return const HomeNormalLayout();
