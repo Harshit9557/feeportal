@@ -165,7 +165,7 @@ class _HomeNormalLayoutState extends State<HomeNormalLayout> {
                 //what we do label
                 Padding(
                   padding: EdgeInsets.only(
-                      top: device.width < 400 ? 380 : 300, bottom: 10),
+                      top: device.width < 420 ? 380 : 300, bottom: 10),
                   child: const Text(
                     'WHAT WE DO',
                     style: TextStyle(

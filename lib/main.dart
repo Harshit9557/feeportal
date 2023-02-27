@@ -37,7 +37,7 @@ class FeePortal extends StatelessWidget {
         title: 'Fee Portal',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             elevation: 1,
             backgroundColor: kSplashScreenColor,
             titleTextStyle: TextStyle(
