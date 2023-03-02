@@ -227,6 +227,7 @@ class _SignUpWideLayoutState extends State<SignUpWideLayout> {
                           });
                         },
                         child: IntlPhoneField(
+                          textAlignVertical: const TextAlignVertical(y: 0.4),
                           keyboardType: TextInputType.number,
                           controller: phoneController,
                           initialCountryCode: 'IN',

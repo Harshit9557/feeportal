@@ -211,6 +211,7 @@ class _SignUpNormalLayoutState extends State<SignUpNormalLayout> {
                     });
                   },
                   child: IntlPhoneField(
+                    textAlignVertical: const TextAlignVertical(y: 0.4),
                     keyboardType: TextInputType.number,
                     controller: phoneController,
                     initialCountryCode: 'IN',
