@@ -1,11 +1,12 @@
 import 'package:feeportal/app/constants/color_constants.dart';
+import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
-import 'package:feeportal/view/navbar/account/account_screen.dart';
+import 'package:feeportal/view/navbar/account/account_main_screen.dart';
 import 'package:feeportal/view/navbar/home/home_main_screen.dart';
-import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
 import 'package:feeportal/view/navbar/services/services_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 int selectedIndex = 0;
 
@@ -17,12 +18,6 @@ class NormalLayout extends StatefulWidget {
 }
 
 class _NormalLayoutState extends State<NormalLayout> {
-  final screens = [
-    const HomeMainScreen(),
-    const ServicesScreen(),
-    const PricingMainScreen(),
-    isLoggedIn ? const AccountScreen() : const LoginMainScreen(),
-  ];
   void _onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -31,6 +26,13 @@ class _NormalLayoutState extends State<NormalLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<AuthProvider>(context);
+    final screens = [
+      const HomeMainScreen(),
+      const ServicesScreen(),
+      const PricingMainScreen(),
+      user.loggedIn ? const AccountMainScreen() : const LoginMainScreen(),
+    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

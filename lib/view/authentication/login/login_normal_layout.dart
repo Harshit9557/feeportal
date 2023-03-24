@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:another_flushbar/flushbar.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
-import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
+import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginNormalLayout extends StatefulWidget {
   const LoginNormalLayout({Key? key}) : super(key: key);
@@ -20,8 +25,28 @@ class _LoginNormalLayoutState extends State<LoginNormalLayout> {
   bool isPasswordHovered = false;
   bool isRegisterHovered = false;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  _showMessage(String message) {
+    return Flushbar(
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(10),
+      backgroundColor: kSplashScreenColor,
+      boxShadows: const [
+        BoxShadow(
+          color: Colors.black45,
+          offset: Offset(3, 3),
+          blurRadius: 3,
+        ),
+      ],
+      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+      forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+      message: message,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final loginResponse = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -209,16 +234,28 @@ class _LoginNormalLayoutState extends State<LoginNormalLayout> {
                   height: 60,
                   width: 120,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          isLoggedIn = true;
-                        });
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          AppRouter.navigationMainRoute,
-                          ModalRoute.withName(AppRouter.navigationMainRoute),
-                          arguments: 3,
-                        );
+                        if (EmailValidator.validate(mailController.text)) {
+                          await loginResponse
+                              .login(
+                                  mailController.text, passwordController.text)
+                              .then((value) {
+                            final response = jsonDecode(value.body);
+                            if (response.toString().contains('error')) {
+                              _showMessage("InValid Email ID/Password");
+                            } else {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                AppRouter.navigationMainRoute,
+                                ModalRoute.withName(
+                                    AppRouter.navigationMainRoute),
+                                arguments: 3,
+                              );
+                            }
+                          });
+                        } else {
+                          _showMessage("Enter Valid Email ID");
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(

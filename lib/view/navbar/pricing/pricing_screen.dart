@@ -336,6 +336,7 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
             Container(
               width: device.width,
               height: 200,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -351,8 +352,9 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
                     'Pricing Plan',
                     style: TextStyle(
                       fontSize: 20,
@@ -361,21 +363,17 @@ class _PricingMainScreenState extends State<PricingMainScreen> {
                     ),
                     textScaleFactor: 1.5,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    width: device.width - 100,
-                    child: const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                      textScaleFactor: 1.3,
-                      textAlign: TextAlign.center,
+                  Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
                     ),
+                    textScaleFactor: 1.3,
                   ),
                 ],
               ),

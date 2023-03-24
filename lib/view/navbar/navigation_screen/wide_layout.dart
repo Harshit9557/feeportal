@@ -1,6 +1,6 @@
 import 'package:feeportal/app/components/navbar/side_navigation.dart';
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
-import 'package:feeportal/view/navbar/account/account_screen.dart';
+import 'package:feeportal/view/navbar/account/account_main_screen.dart';
 import 'package:feeportal/view/navbar/home/home_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/normal_layout.dart';
@@ -19,13 +19,6 @@ class _WideLayoutState extends State<WideLayout> {
   final pageController =
       PageController(initialPage: selectedIndex, keepPage: true);
 
-  final screens = [
-    const HomeMainScreen(),
-    const ServicesScreen(),
-    const PricingMainScreen(),
-    isLoggedIn ? const AccountScreen() : const LoginMainScreen(),
-  ];
-
   final navItems = [
     SideNavigationItem(icon: Icons.home, title: "Home"),
     SideNavigationItem(icon: Icons.miscellaneous_services, title: "Services"),
@@ -35,6 +28,12 @@ class _WideLayoutState extends State<WideLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      const HomeMainScreen(),
+      const ServicesScreen(),
+      const PricingMainScreen(),
+      isLoggedIn ? const AccountMainScreen() : const LoginMainScreen(),
+    ];
     return Scaffold(
       body: Row(
         children: <Widget>[

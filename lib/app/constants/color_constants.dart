@@ -7,3 +7,4 @@ const kButtonHoverColor = Color(0xFF09CFB4);
 const kButtonColor = Color(0xFF01C0AE);
 const kBackgroundColor = Color(0xFFECECEC);
 const kWishlistListColor = Color(0xFF2E2E2E);
+const kDrawerColor = Color(0xFFE9E9E9);
