@@ -17,18 +17,19 @@ class _AppDrawerState extends State<AppDrawer> {
   bool isFAQsHovered = false;
   bool isTermsHovered = false;
   bool isPrivacyPolicyHovered = false;
+  bool isSendMoneyHovered = false;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
         padding: const EdgeInsets.only(right: 20),
-        height: 500,
+        height: 530,
         width: 300,
         decoration: const BoxDecoration(
           color: kSplashScreenColor,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.elliptical(400, 800),
+            topLeft: Radius.elliptical(400, 1000),
             bottomLeft: Radius.elliptical(1000, 1500),
             bottomRight: Radius.elliptical(400, 250),
           ),
@@ -104,6 +105,36 @@ class _AppDrawerState extends State<AppDrawer> {
                     color: isAllTransactionsHovered
                         ? kButtonHoverColor
                         : Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            //send money
+            MouseRegion(
+              onHover: (_) {
+                setState(() {
+                  isSendMoneyHovered = true;
+                });
+              },
+              onExit: (_) {
+                setState(() {
+                  isSendMoneyHovered = false;
+                });
+              },
+              child: GestureDetector(
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRouter.sendMoneyMainRoute),
+                child: Text(
+                  'Send Money',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    fontSize: 15,
+                    color:
+                        isSendMoneyHovered ? kButtonHoverColor : Colors.white,
                   ),
                 ),
               ),

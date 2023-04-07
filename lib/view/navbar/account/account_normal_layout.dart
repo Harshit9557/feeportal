@@ -117,7 +117,7 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
                         onTap: () => Navigator.of(context)
-                            .pushNamed(AppRouter.profileRoute),
+                            .pushNamed(AppRouter.profileMainRoute),
                         child: Row(
                           children: [
                             Column(

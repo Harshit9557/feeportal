@@ -1,13 +1,14 @@
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
 import 'package:feeportal/view/authentication/signup/signup_main_screen.dart';
-import 'package:feeportal/view/navbar/account/profile/profile_screen.dart';
+import 'package:feeportal/view/navbar/account/profile/profile_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/about_us/about_us_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/all_transaction_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/contact_us/contact_us_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/faqs.dart';
+import 'package:feeportal/view/navbar/drawer/help_screen.dart';
 import 'package:feeportal/view/navbar/drawer/privacy_policy.dart';
+import 'package:feeportal/view/navbar/drawer/send_money/send_money_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/terms.dart';
-import 'package:feeportal/view/navbar/help_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/splash_screen/no_internet_screen/no_internet_main_screen.dart';
 import 'package:feeportal/view/splash_screen/splash_screen.dart';
@@ -26,7 +27,8 @@ class AppRouter {
   static const helpMainRoute = '/HelpMainScreen';
   static const privacyPolicyMainRoute = '/PrivacyPolicyMainScreen';
   static const signUPMainRoute = '/SignUpMainScreen';
-  static const profileRoute = '/ProfileScreen';
+  static const profileMainRoute = '/ProfileMainScreen';
+  static const sendMoneyMainRoute = '/SendMoneyMainScreen';
 
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -44,10 +46,17 @@ class AppRouter {
             settings: settings,
           );
         }
-      case profileRoute:
+      case sendMoneyMainRoute:
         {
           return MaterialPageRoute(
-            builder: (_) => const ProfileScreen(),
+            builder: (_) => const SendMoneyMainScreen(),
+            settings: settings,
+          );
+        }
+      case profileMainRoute:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const ProfileMainScreen(),
             settings: settings,
           );
         }
