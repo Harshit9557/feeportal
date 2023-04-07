@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bubble/bubble.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
+import 'package:feeportal/app/constants/url_constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +19,6 @@ class _HelpMainScreenState extends State<HelpMainScreen> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   bool isTextFieldHovered = false;
   List<String> _data = [];
-  String url = "";
 
   _send(String query) async {
     if (query.isNotEmpty) {
@@ -28,7 +28,7 @@ class _HelpMainScreenState extends State<HelpMainScreen> {
       var client = http.Client();
       try {
         await client.post(
-          Uri.parse(url),
+          Uri.parse(chatBotURL),
           body: jsonEncode({"query": query}),
           headers: {
             "Content-Type": "application/json",
