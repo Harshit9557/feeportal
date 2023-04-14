@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:feeportal/core/providers/auth_provider.dart';
-import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +24,57 @@ class _LoginWideLayoutState extends State<LoginWideLayout> {
   bool isPasswordHovered = false;
   bool isRegisterHovered = false;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  _login(String email, String password, BuildContext context) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then(
+        (value) {
+          value != null
+              ? {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Logged In'),
+                    ),
+                  ),
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    AppRouter.navigationMainRoute,
+                    ModalRoute.withName(AppRouter.navigationMainRoute),
+                    arguments: 3,
+                  ),
+                }
+              : ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Error'),
+                  ),
+                );
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User doesn\'t exists'),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Password did not match'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+  }
 
   _showMessage(String message) {
     return Flushbar(
@@ -248,31 +297,12 @@ class _LoginWideLayoutState extends State<LoginWideLayout> {
                         height: 60,
                         width: 120,
                         child: ElevatedButton(
-                          onPressed: () async {
+                          onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               if (EmailValidator.validate(
                                   mailController.text)) {
-                                await loginResponse
-                                    .login(mailController.text,
-                                        passwordController.text)
-                                    .then((value) {
-                                  final response = jsonDecode(value.body);
-                                  print(response);
-                                  if (response.toString().contains('error')) {
-                                    _showMessage("InValid Email ID/Password");
-                                  } else {
-                                    setState(() {
-                                      isLoggedIn = true;
-                                    });
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      AppRouter.navigationMainRoute,
-                                      ModalRoute.withName(
-                                          AppRouter.navigationMainRoute),
-                                      arguments: 3,
-                                    );
-                                  }
-                                });
+                                _login(mailController.text,
+                                    passwordController.text, context);
                               } else {
                                 _showMessage("Enter Valid Email ID");
                               }

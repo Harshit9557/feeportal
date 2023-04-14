@@ -1,7 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
 import 'package:feeportal/core/providers/auth_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,7 +44,6 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
     });
   }
 
-  bool _deleteButtonDisable = false;
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
@@ -185,7 +186,7 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
                                   ),
                                 ),
                                 Text(
-                                  'Manage Your Orders',
+                                  'See Your Transactions',
                                   style: TextStyle(
                                     color: kSplashScreenColor,
                                     fontWeight: FontWeight.w400,
@@ -243,7 +244,9 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
                                 ),
                                 MaterialButton(
                                   onPressed: () async {
-                                    await auth.logOut().then((value) {
+                                    await FirebaseAuth.instance
+                                        .signOut()
+                                        .then((value) {
                                       Navigator.pushReplacementNamed(context,
                                           AppRouter.navigationMainRoute);
                                     });
@@ -276,7 +279,7 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
                                   ),
                                 ),
                                 Text(
-                                  'Exit Plypicker',
+                                  'Exit PayOn',
                                   style: TextStyle(
                                     color: kSplashScreenColor,
                                     fontWeight: FontWeight.w400,
@@ -425,24 +428,31 @@ class _AccountNormalLayoutState extends State<AccountNormalLayout> {
                             ),
                             MaterialButton(
                               onPressed: () async {
-                                if (_deleteButtonDisable == false) {
-                                  setState(() {
-                                    _deleteButtonDisable = true;
-                                  });
-                                  await _deleteAccount();
-                                  await Future.delayed(
-                                      const Duration(seconds: 1));
-                                  setState(() {
-                                    _deleteButtonDisable = false;
-                                  });
-                                }
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .delete()
+                                    .whenComplete(() async {
+                                  await FirebaseAuth.instance.signOut();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Account Deleted'),
+                                    ),
+                                  );
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                    AppRouter.navigationMainRoute,
+                                    ModalRoute.withName(
+                                        AppRouter.navigationMainRoute),
+                                    arguments: 3,
+                                  );
+                                });
                               },
                               child: const Text(
                                 'YES',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
-                                  color: kLoginContainerColor,
+                                  color: kButtonColor,
                                 ),
                               ),
                             ),

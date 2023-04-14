@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
-import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -25,6 +26,58 @@ class _SignUpNormalLayoutState extends State<SignUpNormalLayout> {
   bool isLoginHovered = false;
   String completeNo = "";
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  _signUP(String email, String password, BuildContext context, String name,
+      String phone) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.currentUser!.updateEmail(email);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({
+        'email': email,
+        'password': password,
+        'name': name,
+        'phone': phone
+      }).whenComplete(() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Registration Successful'),
+          ),
+        );
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          AppRouter.navigationMainRoute,
+          ModalRoute.withName(AppRouter.navigationMainRoute),
+          arguments: 3,
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Password is too weak'),
+          ),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Email Already Exists'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -345,14 +398,8 @@ class _SignUpNormalLayoutState extends State<SignUpNormalLayout> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          isLoggedIn = true;
-                        });
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          AppRouter.navigationMainRoute,
-                          ModalRoute.withName(AppRouter.navigationMainRoute),
-                          arguments: 3,
-                        );
+                        _signUP(mailController.text, passwordController.text,
+                            context, nameController.text, completeNo);
                       }
                     },
                     style: ElevatedButton.styleFrom(

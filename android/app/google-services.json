@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "20334690250",
+    "project_id": "payon-11d10",
+    "storage_bucket": "payon-11d10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20334690250:android:8f8e931fe5fb59c37a5933",
+        "android_client_info": {
+          "package_name": "com.example.feeportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20334690250-bori5iu6q54o7nibrhve42uet9pef739.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWMYPY4f-PfNHY13lZJYQtFir_v-yYMFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20334690250-bori5iu6q54o7nibrhve42uet9pef739.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

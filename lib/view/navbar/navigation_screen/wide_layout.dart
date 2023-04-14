@@ -2,10 +2,10 @@ import 'package:feeportal/app/components/navbar/side_navigation.dart';
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
 import 'package:feeportal/view/navbar/account/account_main_screen.dart';
 import 'package:feeportal/view/navbar/home/home_main_screen.dart';
-import 'package:feeportal/view/navbar/navigation_screen/navigation_main_screen.dart';
 import 'package:feeportal/view/navbar/navigation_screen/normal_layout.dart';
 import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
 import 'package:feeportal/view/navbar/services/services_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class WideLayout extends StatefulWidget {
@@ -28,11 +28,12 @@ class _WideLayoutState extends State<WideLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final _auth = FirebaseAuth.instance.currentUser?.uid;
     final screens = [
       const HomeMainScreen(),
       const ServicesScreen(),
       const PricingMainScreen(),
-      isLoggedIn ? const AccountMainScreen() : const LoginMainScreen(),
+      _auth != null ? const AccountMainScreen() : const LoginMainScreen(),
     ];
     return Scaffold(
       body: Row(

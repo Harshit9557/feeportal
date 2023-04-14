@@ -1,12 +1,11 @@
 import 'package:feeportal/app/constants/color_constants.dart';
-import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:feeportal/view/authentication/login/login_main_screen.dart';
 import 'package:feeportal/view/navbar/account/account_main_screen.dart';
 import 'package:feeportal/view/navbar/home/home_main_screen.dart';
 import 'package:feeportal/view/navbar/pricing/pricing_screen.dart';
 import 'package:feeportal/view/navbar/services/services_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 int selectedIndex = 0;
 
@@ -26,12 +25,12 @@ class _NormalLayoutState extends State<NormalLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<AuthProvider>(context);
+    final _auth = FirebaseAuth.instance.currentUser?.uid;
     final screens = [
       const HomeMainScreen(),
       const ServicesScreen(),
       const PricingMainScreen(),
-      user.loggedIn ? const AccountMainScreen() : const LoginMainScreen(),
+      _auth != null ? const AccountMainScreen() : const LoginMainScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(

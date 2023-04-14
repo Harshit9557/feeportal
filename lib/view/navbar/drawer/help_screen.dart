@@ -29,15 +29,13 @@ class _HelpMainScreenState extends State<HelpMainScreen> {
       try {
         await client.post(
           Uri.parse(chatBotURL),
-          body: jsonEncode({"query": query}),
-          headers: {
-            "Content-Type": "application/json",
-          },
+          body: {"query": query},
         ).then((response) {
-          Map<dynamic, String> data = jsonDecode(response.body);
+          Map<String, dynamic> data = jsonDecode(response.body);
           _data.add(
-            "${data['response']}<bot>",
+            "${data['responce']}<bot>",
           );
+          _listKey.currentState?.insertItem(_data.length - 1);
         });
       } catch (e) {
         print(e.toString());
