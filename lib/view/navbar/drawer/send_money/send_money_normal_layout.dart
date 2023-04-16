@@ -36,6 +36,21 @@ class _SendMoneyNormalLayoutState extends State<SendMoneyNormalLayout> {
 
   final _newData = {'name': "", 'phone': "", 'email': ""};
 
+  List<String> mon = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
   _showMessage(String message) {
     Flushbar(
       duration: const Duration(seconds: 3),
@@ -96,7 +111,8 @@ class _SendMoneyNormalLayoutState extends State<SendMoneyNormalLayout> {
         .set({
       'payment_id': response.paymentId,
       'amount': amountController.text,
-      'date': DateTime.now(),
+      'date':
+          '${mon[DateTime.now().month - 1]} ${DateTime.now().day}, ${DateTime.now().year}',
       'payment_mode': _paymethod,
       'status': 'success'
     }).whenComplete(() {
@@ -239,7 +255,7 @@ class _SendMoneyNormalLayoutState extends State<SendMoneyNormalLayout> {
                         });
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           AppRouter.allTransactionsMainRoute,
-                          ModalRoute.withName(AppRouter.navigationMainRoute),
+                          (route) => false,
                         );
                       },
                       child: Container(

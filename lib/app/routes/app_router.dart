@@ -2,7 +2,7 @@ import 'package:feeportal/view/authentication/login/login_main_screen.dart';
 import 'package:feeportal/view/authentication/signup/signup_main_screen.dart';
 import 'package:feeportal/view/navbar/account/profile/profile_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/about_us/about_us_main_screen.dart';
-import 'package:feeportal/view/navbar/drawer/all_transaction_main_screen.dart';
+import 'package:feeportal/view/navbar/drawer/all_transactions/all_transaction_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/contact_us/contact_us_main_screen.dart';
 import 'package:feeportal/view/navbar/drawer/faqs.dart';
 import 'package:feeportal/view/navbar/drawer/help_screen.dart';
