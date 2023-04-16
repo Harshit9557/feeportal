@@ -13,16 +13,6 @@ class SendMoneyMainScreen extends StatefulWidget {
 }
 
 class _SendMoneyMainScreenState extends State<SendMoneyMainScreen> {
-  // bool isEmailHovered = false;
-  // bool isPhoneHovered = false;
-  // bool isFaxHovered = false;
-  // bool isAboutUsHovered = false;
-  // bool isFAQsHovered = false;
-  // bool isTermsHovered = false;
-  // bool isPrivacyPolicyHovered = false;
-  // bool isHelpHovered = false;
-  // bool isAllTransactionHovered = false;
-
   @override
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance.currentUser?.uid;

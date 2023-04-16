@@ -2,11 +2,9 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
-import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoginNormalLayout extends StatefulWidget {
   const LoginNormalLayout({Key? key}) : super(key: key);
@@ -96,7 +94,6 @@ class _LoginNormalLayoutState extends State<LoginNormalLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final loginResponse = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

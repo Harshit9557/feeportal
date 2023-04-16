@@ -1,11 +1,8 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feeportal/app/constants/color_constants.dart';
 import 'package:feeportal/app/routes/app_router.dart';
-import 'package:feeportal/core/providers/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AccountNormalLayout extends StatefulWidget {
   const AccountNormalLayout({Key? key}) : super(key: key);
@@ -15,39 +12,9 @@ class AccountNormalLayout extends StatefulWidget {
 }
 
 class _AccountNormalLayoutState extends State<AccountNormalLayout> {
-  _showMessage(String message) {
-    Flushbar(
-      duration: const Duration(seconds: 3),
-      padding: const EdgeInsets.all(10),
-      backgroundColor: kSplashScreenColor,
-      boxShadows: const [
-        BoxShadow(
-          color: Colors.black45,
-          offset: Offset(3, 3),
-          blurRadius: 3,
-        ),
-      ],
-      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-      message: message,
-    ).show(context);
-  }
-
-  _deleteAccount() async {
-    FocusScope.of(context).unfocus();
-    final prov = Provider.of<AuthProvider>(context, listen: false);
-    await prov.deleteAccount().then((value) {
-      value
-          ? Navigator.pushNamedAndRemoveUntil(
-              context, AppRouter.navigationMainRoute, (route) => false)
-          : _showMessage('Something went wrong. Please try again later!');
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
-    final auth = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

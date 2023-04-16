@@ -12,16 +12,6 @@ class ProfileMainScreen extends StatefulWidget {
 }
 
 class _ProfileMainScreenState extends State<ProfileMainScreen> {
-  // bool isEmailHovered = false;
-  // bool isPhoneHovered = false;
-  // bool isFaxHovered = false;
-  // bool isAboutUsHovered = false;
-  // bool isFAQsHovered = false;
-  // bool isTermsHovered = false;
-  // bool isPrivacyPolicyHovered = false;
-  // bool isHelpHovered = false;
-  // bool isAllTransactionHovered = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
